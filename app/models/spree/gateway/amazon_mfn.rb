@@ -8,5 +8,9 @@ module Spree
     def actions
       %w{capture void credit}
     end
+
+    def supports?(source)
+      source.is_a? payment_source_class
+    end
   end
 end
