@@ -1,3 +1,5 @@
+require 'spree_amazon_mws/orders'
+
 module SpreeAmazonMws
   class Engine < Rails::Engine
     require 'spree/core'
@@ -16,5 +18,9 @@ module SpreeAmazonMws
     end
 
     config.to_prepare &method(:activate).to_proc
+
+    initializer "spree.spree_affirm.payment_methods", :after => "spree.register.payment_methods" do |app|
+      app.config.spree.payment_methods << Spree::Gateway::AmazonMFN
+    end
   end
 end
