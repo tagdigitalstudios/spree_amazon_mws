@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<ListOrdersResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+  <ListOrdersResult>
+    <Orders>
+      <Order>
+        <LatestShipDate>2016-01-20T07:59:59Z</LatestShipDate>
+        <OrderType>StandardOrder</OrderType>
+        <PurchaseDate>2016-01-13T22:44:33Z</PurchaseDate>
+        <BuyerEmail>t86rj274tzsm2hw@marketplace.amazon.com</BuyerEmail>
+        <AmazonOrderId>103-0496932-4748256</AmazonOrderId>
+        <LastUpdateDate>2016-01-14T05:21:25Z</LastUpdateDate>
+        <ShipServiceLevel>Std Cont US Street Addr</ShipServiceLevel>
+        <NumberOfItemsShipped>0</NumberOfItemsShipped>
+        <OrderStatus>Unshipped</OrderStatus>
+        <SalesChannel>Amazon.com</SalesChannel>
+        <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+        <IsBusinessOrder>false</IsBusinessOrder>
+        <LatestDeliveryDate>2016-01-27T07:59:59Z</LatestDeliveryDate>
+        <NumberOfItemsUnshipped>1</NumberOfItemsUnshipped>
+        <BuyerName>Tim Glen</BuyerName>
+        <EarliestDeliveryDate>2016-01-21T08:00:00Z</EarliestDeliveryDate>
+        <OrderTotal>
+          <CurrencyCode>USD</CurrencyCode>
+          <Amount>849.00</Amount>
+        </OrderTotal>
+        <IsPremiumOrder>false</IsPremiumOrder>
+        <EarliestShipDate>2016-01-15T08:00:00Z</EarliestShipDate>
+        <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+        <FulfillmentChannel>MFN</FulfillmentChannel>
+        <PaymentMethod>Other</PaymentMethod>
+        <ShippingAddress>
+          <StateOrRegion>NY</StateOrRegion>
+          <City>Buffalo</City>
+          <Phone>226-971-0840</Phone>
+          <CountryCode>US</CountryCode>
+          <PostalCode>14201</PostalCode>
+          <Name>Tim Glen</Name>
+          <AddressLine1>146 Virginia Street</AddressLine1>
+          <AddressLine2>#2419109 Storage Central -Kinek</AddressLine2>
+        </ShippingAddress>
+        <IsPrime>false</IsPrime>
+        <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+      </Order>
+    </Orders>
+    <CreatedBefore>2016-01-14T16:33:53Z</CreatedBefore>
+  </ListOrdersResult>
+  <ResponseMetadata>
+    <RequestId>ea60b59c-9524-48cf-99f8-bf32a520302a</RequestId>
+  </ResponseMetadata>
+</ListOrdersResponse>

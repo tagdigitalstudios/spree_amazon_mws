@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<GetOrderResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+  <GetOrderResult>
+    <Orders/>
+  </GetOrderResult>
+  <ResponseMetadata>
+    <RequestId>1fefe673-4bbc-437f-b577-8943343556c7</RequestId>
+  </ResponseMetadata>
+</GetOrderResponse>
