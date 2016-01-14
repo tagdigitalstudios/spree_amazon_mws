@@ -20,13 +20,23 @@ RSpec.describe SpreeAmazonMws::Orders do
     it { is_expected.to be_a Peddler::XMLResponseParser }
   end
 
-  describe "#list_orders" do
+  describe "#get_orders" do
     before do
       Excon.stub({ url: client.aws_endpoint, method: :post }, { body: list_orders_file, status: 200, headers: { 'Content-Type' => 'text/xml' } })
     end
     let(:time) { 1.day.ago }
-    let(:list_orders) { orders.list_orders(created_after: time) }
-    subject { list_orders }
+    let(:get_orders) { orders.get_orders(created_after: time) }
+    subject { get_orders }
+    it { is_expected.to be_a Peddler::XMLResponseParser }
+  end
+
+  describe "#get_order_items" do
+    before do
+      Excon.stub({ url: client.aws_endpoint, method: :post }, { body: list_order_items_file, status: 200, headers: { 'Content-Type' => 'text/xml' } })
+    end
+    let(:time) { 1.day.ago }
+    let(:get_order_items) { orders.get_order_items(created_after: time) }
+    subject { get_order_items }
     it { is_expected.to be_a Peddler::XMLResponseParser }
   end
 end
