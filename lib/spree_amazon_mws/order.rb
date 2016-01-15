@@ -11,19 +11,22 @@ module SpreeAmazonMws
         variant = Spree::Variant.find_by(sku: amazon_order_item['SellerSKU'])
         spree_order.contents.add(variant, amazon_order_item['QuantityOrdered'])
       end
+      spree_order.save
     end
 
     def add_addresses
       return unless amazon_order && spree_order
       if ship_address
-        spree_order.create_bill_address(ship_address_attributes)
-        spree_order.create_ship_address(ship_address_attributes)
+        spree_order.bill_address = Spree::Address.create(ship_address_attributes)
+        spree_order.ship_address = Spree::Address.create(ship_address_attributes)
+        spree_order.save
       end
     end
 
     def add_payment
       return unless amazon_order && spree_order
       spree_order.payments.create(amount: amazon_order['OrderTotal']['Amount'], source: amazon_checkout, payment_method: order_fetcher.payment_method, state: 'completed')
+      spree_order.save
     end
 
     def amazon_checkout
@@ -43,18 +46,24 @@ module SpreeAmazonMws
       if self.respond_to?(:before_finalize)
         self.before_finalize
       end
-      # spree_order.select_default_shipping
       spree_order.update_column(:state, 'complete')
+      # remove local site adjustments due to auto-promotions
+      spree_order.all_adjustments.each(&:destroy)
+      spree_order.update_totals
+      spree_order.persist_totals
       spree_order.finalize!
     end
 
     def import
-      @spree_order = Spree::Order.create(email: amazon_order['BuyerEmail'])
       add_addresses
       add_line_items
       add_payment
       finalize
       spree_order
+    end
+
+    def spree_order
+      @spree_order ||= Spree::Order.create(email: amazon_order['BuyerEmail'])
     end
 
     private
