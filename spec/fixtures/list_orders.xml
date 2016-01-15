@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <ListOrdersResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
   <ListOrdersResult>
+    <NextToken>2YgYW55IGNhcm5hbCBwbGVhc3VyZS4=</NextToken>
+    <LastUpdatedBefore>2013-09-25T18%3A10%3A21.687Z</LastUpdatedBefore>
     <Orders>
       <Order>
         <LatestShipDate>2016-01-20T07:59:59Z</LatestShipDate>

@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <ListOrderItemsResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
   <ListOrderItemsResult>
+    <NextToken>2YgYW55IGNhcm5hbCBwbGVhc3VyZS4=</NextToken>
+    <AmazonOrderId>103-0496932-4748256</AmazonOrderId>
     <OrderItems>
       <OrderItem>
         <QuantityOrdered>1</QuantityOrdered>
@@ -45,7 +47,6 @@
         </ShippingDiscount>
       </OrderItem>
     </OrderItems>
-    <AmazonOrderId>103-0496932-4748256</AmazonOrderId>
   </ListOrderItemsResult>
   <ResponseMetadata>
     <RequestId>0a7a9d1e-7c89-482c-9d42-7984f5fe3b90</RequestId>
