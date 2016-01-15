@@ -15,15 +15,7 @@ module Spree
       %w{}
     end
 
-    def details
-      @details ||= payment_method.provider.get_order token
-    end
-
-    def valid_products?
-      true
-    end
-
-    def matching_shipping_address?
+    def check_matching_shipping_address
       true
     end
 
@@ -35,7 +27,7 @@ module Spree
       true
     end
 
-    def check_matching_product_key
+    def check_valid_products
       true
     end
 
@@ -46,7 +38,6 @@ module Spree
         check_matching_shipping_address
         check_matching_billing_address
         check_matching_billing_email
-        check_matching_product_key
       end
   end
 end
