@@ -1,0 +1,19 @@
+<script>
+  function showAmazonMFNError(method_id) {
+    if (method_id === AmazonMFNPaymentMethodID) {
+      $('.payment-method-settings').prepend("<strong id=\"amazon_mfn-warning\">You cannot charge Amazon accounts through the admin backend.</strong>");
+    } else {
+      $('#amazon_mfn-warning').remove();
+    }
+  }
+  AmazonMFNPaymentMethodID = "<%= payment_method.id %>"
+
+  $(function() {
+    var checked_method_id = $('[data-hook="payment_method_field"] input[type="radio"]:checked').val();
+    showAmazonMFNError(checked_method_id);
+
+    $('[data-hook="payment_method_field"] input[type="radio"]').click(function (e) {
+      showAmazonMFNError($(e.target).val());
+    });
+  })
+</script>
