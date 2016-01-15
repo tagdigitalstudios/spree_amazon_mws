@@ -8,6 +8,7 @@
 .byebug_history
 coverage
 Gemfile.lock
+Guardfile
 tmp
 nbproject
 pkg
