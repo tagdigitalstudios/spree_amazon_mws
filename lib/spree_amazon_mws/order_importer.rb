@@ -2,9 +2,12 @@ require 'spree_amazon_mws/order'
 
 module SpreeAmazonMws
   class OrderImporter
+    def amazon_orders
+      @amazon_orders ||= order_fetcher.get_orders(import_recent_orders_options(since))
+    end
+
     def import_recent_orders(since=1.day.ago)
-      @amazon_orders = order_fetcher.get_orders(import_recent_orders_options(since))
-      @amazon_orders.each do |amazon_order|
+      amazon_orders.map do |amazon_order|
         SpreeAmazonMws::Order.new(amazon_order).import
       end
     end
@@ -15,8 +18,8 @@ module SpreeAmazonMws
 
     private
       def amazon_order_ids
-        return [] unless @amazon_orders
-        @amazon_orders.map{|ao| ao['AmazonOrderId'] }
+        return [] unless amazon_orders
+        amazon_orders.map{|ao| ao['AmazonOrderId'] }
       end
 
       def order_fetcher
