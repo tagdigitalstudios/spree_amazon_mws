@@ -1,5 +1,6 @@
 require 'spree_amazon_mws/order_fetcher'
 require 'spree_amazon_mws/order_importer'
+require 'spree_amazon_mws/order'
 
 module SpreeAmazonMws
   class Engine < Rails::Engine

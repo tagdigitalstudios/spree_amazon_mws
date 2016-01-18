@@ -1,5 +1,3 @@
-require 'spree_amazon_mws/order'
-
 module SpreeAmazonMws
   class OrderImporter
     attr_accessor :amazon_orders

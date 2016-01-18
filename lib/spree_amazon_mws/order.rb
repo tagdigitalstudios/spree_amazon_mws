@@ -49,9 +49,9 @@ module SpreeAmazonMws
       spree_order.update_column(:state, 'complete')
       # remove local site adjustments due to auto-promotions
       spree_order.all_adjustments.each(&:destroy)
-      spree_order.update_totals
-      spree_order.persist_totals
+      spree_order.update!
       spree_order.finalize!
+      spree_order.update_columns(payment_state: 'paid', shipment_state: 'ready')
     end
 
     def import
