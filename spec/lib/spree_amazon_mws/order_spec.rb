@@ -4,6 +4,7 @@ RSpec.describe SpreeAmazonMws::Order do
   subject(:order) { SpreeAmazonMws::Order.new(amazon_order) }
   let(:amazon_order) do
     Excon.stub({ url: api_client.aws_endpoint, method: :post, body: /Action=ListOrders[\&$]/ }, { body: list_orders_file, status: 200, headers: { 'Content-Type' => 'text/xml' } })
+    debugger
     order_fetcher.get_orders.first
   end
   let(:amazon_order_items) do

@@ -44,6 +44,48 @@
           <Amount>0.00</Amount>
         </ShippingDiscount>
       </OrderItem>
+      <OrderItem>
+        <QuantityOrdered>1</QuantityOrdered>
+        <Title>YogabedTM Luxury Foam Mattress - Queen</Title>
+        <ShippingTax>
+          <CurrencyCode>USD</CurrencyCode>
+          <Amount>0.00</Amount>
+        </ShippingTax>
+        <PromotionDiscount>
+          <CurrencyCode>USD</CurrencyCode>
+          <Amount>0.00</Amount>
+        </PromotionDiscount>
+        <ConditionId>New</ConditionId>
+        <ASIN>B01AAU5U3Q</ASIN>
+        <SellerSKU>10-1410-30</SellerSKU>
+        <OrderItemId>11672811736754</OrderItemId>
+        <GiftWrapTax>
+          <CurrencyCode>USD</CurrencyCode>
+          <Amount>0.00</Amount>
+        </GiftWrapTax>
+        <QuantityShipped>0</QuantityShipped>
+        <ShippingPrice>
+          <CurrencyCode>USD</CurrencyCode>
+          <Amount>0.00</Amount>
+        </ShippingPrice>
+        <GiftWrapPrice>
+          <CurrencyCode>USD</CurrencyCode>
+          <Amount>0.00</Amount>
+        </GiftWrapPrice>
+        <ConditionSubtypeId>New</ConditionSubtypeId>
+        <ItemPrice>
+          <CurrencyCode>USD</CurrencyCode>
+          <Amount>849.00</Amount>
+        </ItemPrice>
+        <ItemTax>
+          <CurrencyCode>USD</CurrencyCode>
+          <Amount>0.00</Amount>
+        </ItemTax>
+        <ShippingDiscount>
+          <CurrencyCode>USD</CurrencyCode>
+          <Amount>0.00</Amount>
+        </ShippingDiscount>
+      </OrderItem>
     </OrderItems>
     <AmazonOrderId>103-0496932-4748257</AmazonOrderId>
   </ListOrderItemsResult>

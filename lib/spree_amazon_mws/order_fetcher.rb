@@ -17,12 +17,17 @@ module SpreeAmazonMws
     def get_orders(opts = { created_after: 1.day.ago })
       @orders = []
       list_orders = api_client.list_orders(opts)
-      begin
-        orders = list_orders.parse
-        @orders = @orders + orders["Orders"].to_a.map{|n, order| order }
+      loop do
+        returned_orders = list_orders.parse
+        break unless returned_orders["Orders"] && returned_orders["Orders"]["Order"]
+        orders = returned_orders["Orders"]["Order"]
+        # single order gets returned as a hash, multiple orders as an array of hashes
+        orders = [orders] if orders.is_a?(Hash)
+        @orders = @orders + orders
         next_token = list_orders.next_token
         list_orders = api_client.list_orders_by_next_token(next_token) if next_token
-      end while next_token
+        break if !next_token
+      end
       @orders
     end
 
@@ -30,8 +35,12 @@ module SpreeAmazonMws
       @order_items = []
       list_order_items = api_client.list_order_items(amazon_order_id)
       begin
-        order_items = list_order_items.parse
-        @order_items = @order_items + order_items["OrderItems"].to_a.map{|n, order| order }
+        returned_order_items = list_order_items.parse
+        break unless returned_order_items["OrderItems"] && returned_order_items["OrderItems"]["OrderItem"]
+        order_items = returned_order_items["OrderItems"]["OrderItem"]
+        # single order gets returned as a hash, multiple orders as an array of hashes
+        order_items = [order_items] if order_items.is_a?(Hash)
+        @order_items = @order_items + order_items
         next_token = list_order_items.next_token
         list_order_items = api_client.list_order_items_by_next_token(next_token) if next_token
       end while next_token
