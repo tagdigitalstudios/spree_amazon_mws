@@ -21,20 +21,24 @@ RSpec.describe SpreeAmazonMws::OrderImporter do
   describe "#import_recent_orders" do
     subject(:import_recent_orders) { order_importer.import_recent_orders }
     let(:amazon_orders) { SpreeAmazonMws::OrderFetcher.new.get_orders }
-    let(:order) { SpreeAmazonMws::Order.new(amazon_orders.first) }
+    let(:orders) { amazon_orders.map{|amazon_order| SpreeAmazonMws::Order.new(amazon_order) }}
     before do
-      allow(SpreeAmazonMws::Order).to receive(:new).with(amazon_orders.first).and_return(order)
+      amazon_orders.each_with_index do |amazon_order, i|
+        allow(SpreeAmazonMws::Order).to receive(:new).with(amazon_order).and_return(orders[i])
+      end
     end
     it "expects to call order_fetcher.get_orders" do
       expect(order_fetcher).to receive(:get_orders).and_return([])
       import_recent_orders
     end
     it "is expected to create a SpreeAmazonMws::Order object" do
-      expect(SpreeAmazonMws::Order).to receive(:new).with(amazon_orders.first).and_return(order)
+      amazon_orders.each_with_index do |amazon_order, i|
+        expect(SpreeAmazonMws::Order).to receive(:new).with(amazon_order).and_return(orders[i])
+      end
       import_recent_orders
     end
     it "is expected to call SpreeAmazonMws::Order#import" do
-      expect(order).to receive(:import)
+      orders.each {|order| expect(order).to receive(:import) }
       import_recent_orders
     end
   end
