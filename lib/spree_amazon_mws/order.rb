@@ -63,8 +63,13 @@ module SpreeAmazonMws
     end
 
     def spree_order
-      @spree_order ||= Spree::Order.find_or_create_by(amazon_order_id: amazon_order_id) do |order|
-        order.email = amazon_order['BuyerEmail']
+      @spree_order ||= begin
+        order = Spree::Order.find_or_create_by(amazon_order_id: amazon_order_id) do |order|
+          order.email = amazon_order['BuyerEmail']
+        end
+        # empty the order so it will be reloaded
+        order.empty!
+        order
       end
     end
 
