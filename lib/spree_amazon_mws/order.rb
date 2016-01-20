@@ -43,15 +43,14 @@ module SpreeAmazonMws
 
     def finalize
       return unless amazon_order && spree_order
-      if self.respond_to?(:before_finalize)
-        self.before_finalize
-      end
+      self.before_finalize if self.respond_to?(:before_finalize)
       spree_order.update_column(:state, 'complete')
       # remove local site adjustments due to auto-promotions
       spree_order.all_adjustments.each(&:destroy)
       spree_order.update!
       spree_order.finalize!
       spree_order.update_columns(payment_state: 'paid', shipment_state: 'ready')
+      self.after_finalize if self.respond_to?(:after_finalize)
     end
 
     def import
