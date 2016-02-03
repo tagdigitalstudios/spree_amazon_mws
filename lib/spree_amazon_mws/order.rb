@@ -47,6 +47,7 @@ module SpreeAmazonMws
       spree_order.update_column(:state, 'complete')
       # remove local site adjustments due to auto-promotions
       spree_order.all_adjustments.each(&:destroy)
+      spree_order.all_adjustments.reload # empty it out in the object to avoid errors in finalize!
       spree_order.update!
       spree_order.finalize!
       spree_order.update_columns(payment_state: 'paid', shipment_state: 'ready')
@@ -66,6 +67,8 @@ module SpreeAmazonMws
         order = Spree::Order.find_or_create_by(amazon_order_id: amazon_order_id) do |order|
           order.email = amazon_order['BuyerEmail']
         end
+        # set the order to beginning state
+        order.update_columns(state: 'address', completed_at: nil)
         # empty the order so it will be reloaded
         order.empty!
         order
