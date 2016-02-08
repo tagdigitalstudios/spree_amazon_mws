@@ -89,7 +89,7 @@ module SpreeAmazonMws
       end
 
       def name
-        ship_address['Name'].split
+        @name ||= ship_address['Name'].split.size > 1 ? ship_address['Name'].split : amazon_order["BuyerName"].split
       end
 
       def order_fetcher
