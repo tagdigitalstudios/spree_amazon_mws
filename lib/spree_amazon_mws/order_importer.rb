@@ -4,6 +4,11 @@ module SpreeAmazonMws
 
     def import_recent_orders(since=1.day.ago)
       @amazon_orders ||= order_fetcher.get_orders(import_recent_orders_options(since))
+      import_orders
+    end
+
+    def import_orders
+      return if @amazon_orders.blank?
       # put this into a transaction to make it atomic
       Spree::Order.transaction do
         @amazon_orders.map do |amazon_order|
