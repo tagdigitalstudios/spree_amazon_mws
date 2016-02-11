@@ -116,7 +116,7 @@ module SpreeAmazonMws
       end
 
       def state
-        @state ||= Spree::State.find_by(abbr: ship_address['StateOrRegion'], country_id: country.try(:id))
+        @state ||= Spree::State.where("name ILIKE ? OR abbr ILIKE ?", ship_address['StateOrRegion'], ship_address['StateOrRegion']).where(country_id: country.try(:id)).try(:first)
       end
   end
 end
