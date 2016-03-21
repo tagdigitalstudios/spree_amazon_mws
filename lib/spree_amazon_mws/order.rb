@@ -50,7 +50,7 @@ module SpreeAmazonMws
       # empty `all_adjustments` by reloading the destroyed objects to avoid errors in finalize!
       spree_order.all_adjustments.reload
       # don't allow the order to send a confirmation email. It comes from Amazon
-      spree_order.update_column(:confirmation_delivered, true
+      spree_order.update_column(:confirmation_delivered, true)
       spree_order.update!
       spree_order.finalize!
       spree_order.update_columns(payment_state: 'paid', shipment_state: 'ready')
