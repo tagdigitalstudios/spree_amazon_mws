@@ -47,7 +47,10 @@ module SpreeAmazonMws
       spree_order.update_column(:state, 'complete')
       # remove local site adjustments due to auto-promotions
       spree_order.all_adjustments.each(&:destroy)
-      spree_order.all_adjustments.reload # empty it out in the object to avoid errors in finalize!
+      # empty `all_adjustments` by reloading the destroyed objects to avoid errors in finalize!
+      spree_order.all_adjustments.reload
+      # don't allow the order to send a confirmation email. It comes from Amazon
+      spree_order.update_column(:confirmation_delivered, true
       spree_order.update!
       spree_order.finalize!
       spree_order.update_columns(payment_state: 'paid', shipment_state: 'ready')
